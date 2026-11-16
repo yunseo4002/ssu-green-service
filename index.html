@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>빈틈없슈 · SSU Green Service</title>
+<meta name="description" content="함께 만드는 깨끗한 숭실, 교내 환경봉사 플랫폼 빈틈없슈 모바일 프로토타입">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231d624b'/%3E%3Ctext x='20' y='29' text-anchor='middle' font-size='28' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="floor-certification.css">
+</head>
+<body>
+<svg style="display:none" aria-hidden="true"><defs>
+<symbol id="building" viewBox="0 0 24 24"><path d="M4 21V5l8-3 8 3v16M2 21h20M9 21v-5h6v5M8 7h1m6 0h1M8 11h1m6 0h1"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v11H3zM9 21v-8h6v8"/></symbol>
+<symbol id="activity" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 4V2h6v2M9 11l2 2 4-4M9 17h6"/></symbol>
+<symbol id="map" viewBox="0 0 24 24"><path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2zM9 3v16M15 5v16"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
+<symbol id="camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="4"/></symbol>
+<symbol id="logout" viewBox="0 0 24 24"><path d="M10 17l5-5-5-5M15 12H3M21 3v18h-6"/></symbol>
+</defs></svg>
+
+<div class="shell">
+<section id="login-screen" class="login-screen">
+<div class="login-card">
+<div class="brand large">빈틈없슈<small>SSU GREEN SERVICE</small></div>
+<p class="login-copy">교내 환경봉사 신청부터 인증까지 한 번에 관리해요.</p>
+<a class="saint-button" href="https://saint.ssu.ac.kr/irj/portal" target="_blank" rel="noopener">숭실대학교 계정으로 로그인</a>
+<button id="student-demo" class="ghost-button">학생 데모로 입장</button>
+<div class="admin-login">
+<h2>관리자 로그인</h2>
+<form id="admin-form">
+<label>ID<input id="admin-id" type="text" autocomplete="username" placeholder="관리자 ID"></label>
+<label>Password<input id="admin-password" type="password" autocomplete="current-password" placeholder="비밀번호"></label>
+<button class="primary" type="submit">관리자 대시보드 입장</button>
+<p id="login-error" class="error" aria-live="polite"></p>
+</form>
+</div>
+</div>
+</section>
+
+<div id="student-app" class="app" hidden>
+<header><div class="brand">빈틈없슈<small>SSU GREEN SERVICE</small></div><button class="icon-text" id="student-logout"><svg><use href="#logout"/></svg>로그아웃</button></header>
+<main>
+<section id="home-page"><div class="hero"><p class="eyebrow">GREEN CAMPUS, TOGETHER</p><h1>오늘도 깨끗한 숭실을<br><strong>만들어봐요!</strong></h1><p>작은 실천이 모여, 빈틈없는 캠퍼스로.</p></div>
+<h2 class="section-title">어디서 함께할까요?</h2><label class="search"><svg aria-hidden="true"><use href="#search"/></svg><input id="search-input" type="search" placeholder="건물 이름을 검색해 보세요" aria-label="건물 검색" autocomplete="off"></label>
+<div class="filters" aria-label="건물 분류"></div><div class="list-meta"><strong id="result-count" aria-live="polite"></strong><span>함께 가꾸는 우리 캠퍼스</span></div><div class="cards" id="building-list"></div><p class="footnote">건물 분류·쓰레기통 수는 시연용 예시입니다.<br>SGS · 작은 실천, 더 깨끗한 숭실</p></section>
+<section id="activity-page" hidden><h1 class="page-title">내 활동</h1><p class="sub">신청한 활동과 전후 사진 인증 상태를 확인해요.</p><div id="activity-list" class="cards" aria-live="polite"></div></section>
+<section id="map-page" hidden><h1 class="page-title">캠퍼스 지도</h1><p class="sub">날짜별 신청 가능 건물을 지도처럼 확인해요.</p><div class="map-tools"><input id="map-date" type="date"><span id="map-time"></span></div><div class="campus-map" id="campus-map"></div><div id="map-detail" class="map-detail"></div></section>
+<section id="profile-page" hidden><h1 class="page-title">마이페이지</h1><div class="profile"><strong>반가워요, 김숭실님!</strong><p>함께 만드는 더 깨끗한 캠퍼스</p></div><div class="card"><span class="category">나의 신청 활동</span><h2 id="profile-count">0건</h2></div><p class="footnote">학생 데모는 정적 프로토타입 체험용입니다.</p></section>
+</main><nav class="bottom-nav" aria-label="하단 메뉴"><button data-page="home" aria-current="page"><svg aria-hidden="true"><use href="#home"/></svg>홈</button><button data-page="activity"><svg aria-hidden="true"><use href="#activity"/></svg>내 활동</button><button data-page="map"><svg aria-hidden="true"><use href="#map"/></svg>캠퍼스 지도</button><button data-page="profile"><svg aria-hidden="true"><use href="#user"/></svg>마이페이지</button></nav></div>
+
+<section id="admin-app" class="admin-app" hidden>
+<header class="admin-header"><div><div class="brand">관리자<small>SGS ADMIN</small></div><p>전체 신청과 인증 사진을 확인합니다.</p></div><button class="icon-text" id="admin-logout"><svg><use href="#logout"/></svg>로그아웃</button></header>
+<main class="admin-main">
+<div class="summary-grid" id="summary-grid"></div>
+<div class="admin-actions"><div class="admin-filters"><input id="filter-date" type="date"><select id="filter-building"></select><select id="filter-status"></select></div><button id="excel-download" class="primary">Excel 다운로드</button></div>
+<div class="admin-layout"><section class="admin-panel"><h2>봉사 신청 목록</h2><div id="admin-list" class="admin-list"></div></section><section class="admin-panel"><h2>신청 상세</h2><div id="admin-detail" class="admin-detail empty">왼쪽 목록에서 신청을 선택해 주세요.</div></section></div>
+</main>
+</section>
+</div>
+
+<dialog id="guide-dialog" aria-labelledby="guide-title"><div class="modal-icon"><svg aria-hidden="true"><use href="#check"/></svg></div><h2 id="guide-title">봉사교육 가이드</h2><p>신청 전에 촬영 방법과 분리수거 순서를 확인해 주세요.</p><div class="guide-list"><section><b>활동 전 사진 2장</b><span>① 쓰레기통 이름표와 전체 쓰레기통이 함께 보이게 촬영<br>② 캔·플라스틱 칸 내부가 보이게 촬영</span></section><section><b>1. 분리수거 시작</b><span>제대로 분리배출되지 않은 쓰레기들을 정리해요.</span></section><section><b>2. 컵을 분리해요</b><span>빨대와 종이 홀더는 일반쓰레기로 버려요. 컵 뚜껑과 몸체를 분리하고, 남은 내용물은 화장실 걸레 세척대에 버려요.</span></section><section><b>3. 부피를 줄여요</b><span>빈 컵은 겹쳐 쌓아 부피를 줄여요.</span></section><section><b>4. 올바른 칸에 버려요</b><span>분리한 쓰레기를 일반쓰레기·캔·플라스틱 칸에 각각 배출해요.</span></section><section><b>5. 활동 후 사진 2장</b><span>① 이름표와 쓰레기통 전체가 보이게 촬영<br>② 정리된 칸 내부가 보이게 촬영</span></section></div><div class="criteria-box"><h3>봉사활동 인정 기준</h3><ol><li>쓰레기통 위에 방치된 쓰레기가 없어야 해요.</li><li>분리수거 칸 안에 추가로 분리해야 할 쓰레기가 없어야 해요.</li><li>담당한 모든 층의 쓰레기통 사진을 전부 등록해야 해요.</li></ol></div><div class="modal-buttons"><button id="guide-cancel">돌아가기</button><button class="primary" id="start-quiz">퀴즈 풀기</button></div></dialog>
+
+<dialog id="quiz-dialog" aria-labelledby="quiz-title"><div class="modal-icon"><svg aria-hidden="true"><use href="#activity"/></svg></div><h2 id="quiz-title">분리수거 퀴즈</h2><p>3문제를 모두 맞혀야 신청 단계로 이동할 수 있어요.</p><form id="quiz-form" class="quiz-form"><fieldset><legend>1. 활동 전 첫 번째 사진에 꼭 보여야 하는 것은?</legend><label><input type="radio" name="q1" value="a"> 쓰레기통 이름표와 전체 모습</label><label><input type="radio" name="q1" value="b"> 바닥만 보이는 모습</label></fieldset><fieldset><legend>2. 컵의 빨대와 종이 홀더는 어디에 버릴까요?</legend><label><input type="radio" name="q2" value="a"> 플라스틱 칸</label><label><input type="radio" name="q2" value="b"> 일반쓰레기 칸</label></fieldset><fieldset><legend>3. 봉사활동 인정 기준으로 맞는 것은?</legend><label><input type="radio" name="q3" value="a"> 담당한 모든 쓰레기통 사진을 등록한다</label><label><input type="radio" name="q3" value="b"> 한 층의 사진만 등록해도 된다</label></fieldset><p id="quiz-error" class="error" aria-live="polite"></p><div class="modal-buttons"><button type="button" id="quiz-back">가이드 보기</button><button type="submit" class="primary">정답 확인</button></div></form></dialog>
+
+<dialog id="apply-dialog" aria-labelledby="dialog-title"><div class="modal-icon"><svg aria-hidden="true"><use href="#activity"/></svg></div><h2 id="dialog-title">활동을 신청할까요?</h2><p id="dialog-description"></p><div class="quiz-pass"><svg><use href="#check"/></svg>봉사교육 퀴즈 통과</div><label class="field">활동 날짜<input id="apply-date" type="date"></label><label class="field" id="assignment-field" hidden>담당 층 묶음<select id="apply-assignment"></select></label><div class="detail" id="dialog-detail"></div><label class="field">참여 인원<select id="apply-people"><option value="1">1명</option><option value="2">2명</option></select></label><div class="modal-buttons"><button id="cancel">돌아가기</button><button class="primary" id="confirm">신청 확인</button></div></dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
